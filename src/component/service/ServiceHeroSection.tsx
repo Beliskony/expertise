@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle, Shield, Target, Users } from 'lucide-react'
+import { CheckCircle, Target, Users } from 'lucide-react'
 
 const ServiceHeroSection = () => {
   return (
