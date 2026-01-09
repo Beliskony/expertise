@@ -16,7 +16,7 @@ export function Footer() {
                 <Leaf className="w-7 h-7 text-[#1a4d2e]" />
               </div>
               <div>
-                <h2 className="font-bold text-xl text-white">Hermane</h2>
+                <h2 className="font-bold text-xl text-white">H</h2>
                 <p className="text-[#d4c5a9] text-sm">Consulting & Audit</p>
               </div>
             </div>

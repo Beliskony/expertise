@@ -62,7 +62,7 @@ const Header: React.FC = () => {
           {/* Logo */}
           <div className="shrink-0">
             <Link to="/" className="text-2xl font-bold text-[#1a4d2e] hover:text-[#6b8e23] transition-colors">
-              Hermane
+              H
             </Link>
           </div>
 
