@@ -109,7 +109,7 @@ export function Footer() {
           
               <li className="flex items-center gap-2 text-[#d4c5a9]">
                 <ShieldCheck className="w-4 h-4 text-[#ff6347]" />
-                <span className="hover:text-white transition-colors cursor-pointer">Normes ISO & SMETA</span>
+                <span className="hover:text-white transition-colors cursor-pointer">Plans de Gestion Environnementale et Sociale (PGES/CGES)</span>
               </li>
             </ul>
           </div>

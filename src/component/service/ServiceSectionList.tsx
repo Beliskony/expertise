@@ -20,7 +20,7 @@ const ServiceSectionList = () => {
   )
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-[#d4c5a9]/10" id="services-list">
+    <section className="py-20 bg-linear-to-b from-white to-[#d4c5a9]/10" id="services-list">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           
@@ -36,21 +36,7 @@ const ServiceSectionList = () => {
                 </p>
               </div>
               
-              {/* View Toggle */}
-              <div className="flex items-center gap-2 bg-white border border-[#d4c5a9] rounded-lg p-1">
-                <button
-                  onClick={() => setViewMode("grid")}
-                  className={`p-2 rounded-md transition-colors ${viewMode === "grid" ? "bg-[#1a4d2e] text-white" : "text-gray-500 hover:text-gray-900"}`}
-                >
-                  <Grid className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={() => setViewMode("list")}
-                  className={`p-2 rounded-md transition-colors ${viewMode === "list" ? "bg-[#1a4d2e] text-white" : "text-gray-500 hover:text-gray-900"}`}
-                >
-                  <List className="w-5 h-5" />
-                </button>
-              </div>
+
             </div>
 
             {/* Filters */}
@@ -99,7 +85,7 @@ const ServiceSectionList = () => {
           </div>
 
           {/* Stats Banner */}
-          <div className="mt-16 bg-gradient-to-r from-[#1a4d2e] to-[#6b8e23] rounded-2xl p-8 text-white">
+          <div className="mt-16 bg-linear-to-r from-[#1a4d2e] to-[#6b8e23] rounded-2xl p-8 text-white">
             <div className="flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="md:w-2/3">
                 <h3 className="text-2xl font-bold mb-3">Un accompagnement complet</h3>

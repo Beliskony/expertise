@@ -1,12 +1,11 @@
 // Type pour les médias de la galerie
-export interface IEventMedia {
-  type: "image" | "video";
+export interface IEventImage {
+  type: "image";
   url: string;
-  alt?: string;
 }
 
 // Interface principale d’un événement
-export interface IUpcomingEvent {
+export interface IEvents {
   id: number;
   title: string;
   date: string;        // ex: "15 Mars 2025" ou "22-24 Avril 2025"
@@ -19,11 +18,11 @@ export interface IUpcomingEvent {
   description: string;
   topics: string[];
   registrationOpen: boolean;
-  gallery: IEventMedia[];
+  gallery: IEventImage;
 }
 
 
-const upcomingEventsData: IUpcomingEvent[] = [
+const upcomingEventsData: IEvents[] = [
   {
     id: 1,
     title: "Durabilité dans la production d'huile de palme : Normes RSPO 2025",
@@ -38,10 +37,8 @@ const upcomingEventsData: IUpcomingEvent[] = [
       "Découvrez les dernières évolutions des normes RSPO et comment les implémenter efficacement dans votre production.",
     topics: ["RSPO P&C", "Certification ISH", "Traçabilité", "Chain of Custody"],
     registrationOpen: true,
-    gallery: [
-      { type: "image", url: "/images/service/1.jpg", alt: "Conférence RSPO" },
-      { type: "image", url: "/images/service/1.jpg", alt: "Plantation durable" },
-    ],
+    gallery: { type: "image", url: "/images/service/1.jpg" },
+      
   },
 ];
 
