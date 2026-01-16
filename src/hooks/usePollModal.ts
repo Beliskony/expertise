@@ -76,7 +76,7 @@ export const usePollModal = () => {
     phone: string
     rating: number
     feedback: string
-    recommend: boolean
+
   }) => {
     // Enregistrer la soumission
     localStorage.setItem('poll_submitted', 'true')
