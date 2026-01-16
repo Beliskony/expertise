@@ -10,7 +10,7 @@ const ServiceHeroSection = () => {
           alt="Expert en durabilité - Services"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1a4d2e]/90 via-[#1a4d2e]/80 to-[#6b8e23]/85" />
+        <div className="absolute inset-0 bg-linear-to-r from-[#1a4d2e]/90 via-[#1a4d2e]/80 to-[#6b8e23]/85" />
       </div>
       
       {/* Content */}
@@ -57,7 +57,7 @@ const ServiceHeroSection = () => {
               </div>
               <h3 className="text-xl font-semibold text-white mb-2">Suivi Personnalisé</h3>
               <p className="text-emerald-100/80 text-center text-sm">
-                Engagement jusqu'à la certification et au-delà
+                Engagement jusqu'à la validation du projet et au-delà
               </p>
             </div>
           </div>

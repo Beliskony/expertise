@@ -4,9 +4,8 @@ export interface IServices {
   description: string
   category: string // "evaluation" | "audit" | "certification" | "formation"
   icones: string
-  images?: string
-  imgTitle: string
-  imgPoints: string[]
+  image1?: string
+  image2?: string
   points: string[]
   position?: "normal" | "reverse"
   additionalInfo?: string
@@ -15,74 +14,114 @@ export interface IServices {
 export const ServiceData: IServices[] = [
   {
     id: 1,
-    title: "Évaluations Stratégiques Environnementales et Sociales (EESS)",
-    description: "Analyse approfondie des impacts environnementaux et sociaux de vos projets stratégiques pour une prise de décision éclairée.",
+    title: "Évaluations Environnementales Stratégiques (EESS)",
+    description: "Analyse prospective des impacts de vos politiques et plans sectoriels pour une prise de décision éclairée et durable.",
     category: "evaluation",
     icones: "FileSearch",
-    images: "/images/services/eess.jpg",
-    imgTitle: "Processus d'évaluation stratégique",
-    imgPoints: [
-      "Analyse de conformité réglementaire",
-      "Identification des risques et opportunités",
-      "Consultation des parties prenantes",
-      "Recommandations stratégiques"
-    ],
+    image1: "/images/services/eess.jpg",
+    image2: "/images/services/strategie.jpg",
     points: [
-      "Évaluation préliminaire des impacts",
-      "Analyse des alternatives",
-      "Plan de gestion environnementale et sociale",
-      "Suivi et reporting",
-      "Consultation publique intégrée"
+      "Cadrage et analyse sectorielle",
+      "Évaluation des impacts stratégiques",
+      "Recommandations politiques et plan d'action"
     ],
     position: "normal",
-    additionalInfo: "Durée moyenne : 4-8 semaines selon la complexité du projet"
+    additionalInfo: "Expertise confirmée : Forêts classées, hydrocarbures, industries extractives"
   },
   {
     id: 2,
-    title: "Études d'Impact Environnemental et Social (EIES)",
-    description: "Évaluation complète des impacts spécifiques de vos projets pour garantir leur durabilité et leur acceptabilité sociale.",
+    title: "Études d'Impact Environnemental et Social (EIES/EIES-A)",
+    description: "Évaluation complète et approfondie des impacts spécifiques de vos projets pour garantir leur acceptabilité et durabilité.",
     category: "evaluation",
     icones: "FileCheck",
-    images: "/images/services/eies.jpg",
-    imgTitle: "Méthodologie EIES détaillée",
-    imgPoints: [
-      "Cadrage et périmètre d'étude",
-      "Collecte de données terrain",
-      "Modélisation des impacts",
-      "Mesures d'atténuation"
-    ],
+    image1: "/images/services/eies.jpg",
+    image2: "/images/services/terrain.jpg",
     points: [
-      "Diagnostic environnemental initial",
-      "Évaluation des impacts cumulés",
-      "Plan de suivi-évaluation",
-      "Rapport d'étude complet",
-      "Appui à l'approbation administrative"
+      "Diagnostic et évaluation des impacts",
+      "Consultations publiques et parties prenantes",
+      "Élaboration du PGES et rapport final"
     ],
     position: "reverse",
-    additionalInfo: "Conforme aux exigences des bailleurs de fonds internationaux"
+    additionalInfo: "30+ missions réalisées - Conforme BAD, Banque Mondiale, AFD, UE"
   },
   {
     id: 3,
     title: "Audits Environnementaux et Sociaux",
-    description: "Vérification indépendante de la conformité et de la performance de vos systèmes de management environnemental et social.",
+    description: "Vérification indépendante de la conformité et de la performance de vos opérations, avec plans d'actions correctives.",
     category: "audit",
     icones: "ShieldCheck",
-    images: "/images/services/audit.jpg",
-    imgTitle: "Processus d'audit complet",
-    imgPoints: [
-      "Pré-audit documentaire",
-      "Visites terrain approfondies",
-      "Entretiens avec le personnel",
-      "Analyse des systèmes en place"
-    ],
+    image1: "/images/services/audit.jpg",
+    image2: "/images/services/conformite.jpg",
     points: [
-      "Audit de conformité réglementaire",
-      "Audit de performance",
-      "Audit de certification",
-      "Rapport d'audit détaillé",
-      "Plan d'actions correctives"
+      "Vérification de la conformité terrain",
+      "Évaluation des écarts et risques",
+      "Proposition de plan d'actions correctives"
     ],
     position: "normal",
-    additionalInfo: "Auditeurs principaux certifiés RSPO, ISO 14001, SMETA"
+    additionalInfo: "Audits récurrents pour 2PAI-Bélier depuis 2023"
+  },
+  {
+    id: 4,
+    title: "Plans de Gestion Environnementale et Sociale (PGES/CGES)",
+    description: "Conception et mise en œuvre opérationnelle de cadres de gestion pour l'intégration des exigences ESG.",
+    category: "evaluation",
+    icones: "ClipboardList",
+    image1: "/images/services/pges.jpg",
+    image2: "/images/services/suivi.jpg",
+    points: [
+      "Élaboration du cadre de gestion",
+      "Déclinaison opérationnelle",
+      "Mise en place des systèmes de suivi"
+    ],
+    position: "reverse",
+    additionalInfo: "Expérience avec UNICEF, PIF2, centrales biomasse"
+  },
+  {
+    id: 5,
+    title: "Accompagnement à la Certification & Normes Durables",
+    description: "Appui complet pour la préparation, l'obtention et le maintien des certifications sectorielles reconnues.",
+    category: "certification",
+    icones: "BadgeCheck",
+    image1: "/images/services/certification.jpg",
+    image2: "/images/services/rspo.jpg",
+    points: [
+      "Analyse d'écart avec le référentiel",
+      "Plan de mise en conformité",
+      "Préparation et suivi d'audit"
+    ],
+    position: "normal",
+    additionalInfo: "Ancien Responsable QSE certifié - Formateur approuvé RSPO"
+  },
+  {
+    id: 6,
+    title: "Suivi Environnemental et Social des Projets",
+    description: "Surveillance continue et reporting de la performance environnementale et sociale pendant l'exécution.",
+    category: "evaluation",
+    icones: "BarChart",
+    image1: "/images/services/suivi-projet.jpg",
+    image2: "/images/services/rapportage.jpg",
+    points: [
+      "Suivi de la mise en œuvre",
+      "Contrôle des mesures d'atténuation",
+      "Reporting aux bailleurs"
+    ],
+    position: "reverse",
+    additionalInfo: "Mission UNICEF (KfW) - Expérience multi-bailleurs"
+  },
+  {
+    id: 7,
+    title: "Formation et Renforcement des Capacités",
+    description: "Programmes de formation sur mesure pour doter vos équipes des compétences en gestion environnementale.",
+    category: "formation",
+    icones: "Users",
+    image1: "/images/services/formation.jpg",
+    image2: "/images/services/atelier.jpg",
+    points: [
+      "Évaluation des besoins",
+      "Animation de la formation",
+      "Évaluation des acquis"
+    ],
+    position: "normal",
+    additionalInfo: "Formateur approuvé par la RSPO"
   }
 ]

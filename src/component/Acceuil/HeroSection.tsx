@@ -11,12 +11,12 @@ const HeroSection = () => {
           alt="Expert en durabilité"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/85 via-emerald-800/60 to-teal-900/70" />
+        <div className="absolute inset-0 bg-linear-to-br from-emerald-900/85 via-emerald-800/60 to-teal-900/70" />
       </div>
 
       {/* Contenu */}
       <div className="relative z-10 container mx-auto px-4 py-12">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-4 items-center">
           
           {/* Côté gauche : Photo et infos personnelles */}
           <div className="flex flex-col items-center lg:items-start">
@@ -25,15 +25,11 @@ const HeroSection = () => {
               <div className="w-72 h-72 rounded-full overflow-hidden border-4 border-white shadow-2xl">
                 <img 
                   src="/images/personne/1.jpg" 
-                  alt="Dr. Jean Dupont - Expert en durabilité"
+                  alt="Hermann"
                   className="w-full h-full object-cover"
                 />
               </div>
-              {/* Badge de certification */}
-              <div className="absolute -bottom-4 -right-4 bg-[#1a4d2e] text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
-                <Award className="w-4 h-4 inline mr-2" />
-                Expert Certifié RSPO
-              </div>
+
             </div>
 
             {/* Informations personnelles */}
@@ -47,7 +43,7 @@ const HeroSection = () => {
                   </div>
                   <div>
                     <p className="text-sm text-gray-600">Années d'expérience</p>
-                    <p className="font-semibold text-gray-900">15+ années</p>
+                    <p className="font-semibold text-gray-900">18 années</p>
                   </div>
                 </div>
 
@@ -77,24 +73,25 @@ const HeroSection = () => {
           {/* Côté droit : Présentation et CTA */}
           <div className="space-y-8 text-center lg:text-left py-8">
             {/* Titre principal avec nom */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              Dr. Jean <span className="text-emerald-300">Dupont</span>
+            <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold text-white leading-tight">
+              BROU Assoua<span className="text-emerald-300"> Hermann</span>
               <span className="block text-xl md:text-2xl text-emerald-200 mt-4">
-                Consultant Senior en Certifications Durables
+                Expertise environnemental et programme de durabilité
               </span>
             </h1>
 
             {/* Description personnelle */}
             <div className="space-y-4">
               <p className="text-lg text-emerald-50 leading-relaxed">
-                Avec plus de 15 années d'expertise dans l'évaluation environnementale et sociale, 
+                Avec 18 années d'expertise dans l'évaluation environnementale et sociale, 
                 j'accompagne les organisations vers l'excellence en matière de durabilité. 
                 Mon approche personnalisée combine rigueur technique et accompagnement sur mesure.
               </p>
               
               <p className="text-emerald-100 font-semibold">
                 <span className="text-emerald-300">Expertises principales :</span><br/>
-                Certifications RSPO, Normes ISO, Audits SMETA, Évaluations Environnementales & Sociales
+                  Évaluations Environnementales & Sociales, Suivi Environnementales & Sociales, Appui à la mise en oeuvre du programme de durabilité.
+                  Conformité RSPO, ISO, SMETA, BIO(UE, USA, NOP)
               </p>
             </div>
 
