@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { X, Star, User, Phone, MessageSquare, Send, CheckCircle } from 'lucide-react'
+import { X, User, Phone, MessageSquare, Send, CheckCircle } from 'lucide-react'
 
 interface PollModalProps {
   isVisible: boolean
@@ -17,7 +17,6 @@ const PollModal: React.FC<PollModalProps> = ({
   isVisible, 
   onClose, 
   onSubmit,
-  eventName = "cet événement"
 }) => {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
@@ -39,32 +38,52 @@ const PollModal: React.FC<PollModalProps> = ({
     }
   }, [isVisible])
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    
-    if (!name.trim() || !phone.trim() || rating === 0) {
-      return // Validation basique
-    }
-    
-    setIsSubmitting(true)
-    
-    // Simuler un délai d'envoi
-    setTimeout(() => {
-      onSubmit({
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault()
+
+  // Validation basique
+  if (!name.trim() || !phone.trim() || rating === 0) {
+    return
+  }
+
+  setIsSubmitting(true)
+
+  try {
+    const response = await fetch("https://hermanbackend.onrender.com/createPoll", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         name,
         phone,
         rating,
-        feedback
-      })
-      setIsSubmitted(true)
-      setIsSubmitting(false)
-      
-      // Fermer automatiquement après 3 secondes
-      setTimeout(() => {
-        onClose()
-      }, 3000)
-    }, 1000)
+        feedback,
+      }),
+    })
+
+    if (!response.ok) {
+      throw new Error("Erreur lors de l'envoi du formulaire")
+    }
+
+    // Optionnel : récupérer la réponse backend
+    // const data = await response.json()
+
+    setIsSubmitted(true)
+
+    // Fermer automatiquement après 3 secondes
+    setTimeout(() => {
+      onClose()
+    }, 3000)
+
+  } catch (error) {
+    console.error(error)
+    // ici tu peux afficher un message d'erreur à l'utilisateur
+  } finally {
+    setIsSubmitting(false)
   }
+}
+
 
   const handleStarClick = (value: number) => {
     setRating(value)
@@ -102,7 +121,7 @@ const PollModal: React.FC<PollModalProps> = ({
                   {isSubmitted ? 'Merci !' : 'Évaluation de l\'événement'}
                 </h3>
                 <p className="text-white/90 text-sm">
-                  {isSubmitted ? 'Votre avis a été enregistré' : `Donnez votre avis sur ${eventName}`}
+                  {isSubmitted ? 'Votre avis a été enregistré' : `Donnez votre avis sur l'evement`}
                 </p>
               </div>
             </div>
@@ -171,7 +190,7 @@ const PollModal: React.FC<PollModalProps> = ({
               {/* Évaluation sur 10 */}
               <div className="pt-4 border-t border-gray-100">
                 <label className="block text-gray-900 font-medium mb-4">
-                  Notez {eventName} sur 10 *
+                  Notez l'evement sur 10 *
                 </label>
                 <div className="flex flex-wrap justify-center gap-2 mb-3">
                   {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((star) => (
@@ -211,7 +230,7 @@ const PollModal: React.FC<PollModalProps> = ({
               {/* Commentaires */}
               <div className="pt-4 border-t border-gray-100">
                 <label htmlFor="feedback" className="block text-gray-900 font-medium mb-3">
-                  Qu'avez-vous pensé de {eventName} ?
+                  Qu'avez-vous pensé de l'événement ?
                 </label>
                 <textarea
                   id="feedback"
