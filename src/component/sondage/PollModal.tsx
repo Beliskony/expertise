@@ -13,6 +13,11 @@ interface PollModalProps {
   eventName?: string
 }
 
+interface LatestEvent {
+  eventName: string
+  // autres propriétés si nécessaire
+}
+
 const PollModal: React.FC<PollModalProps> = ({ 
   isVisible, 
   onClose, 
@@ -25,6 +30,29 @@ const PollModal: React.FC<PollModalProps> = ({
   const [feedback, setFeedback] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [latestEvent, setLatestEvent] = useState<string>('')
+  const [isLoadingEvent, setIsLoadingEvent] = useState(false)
+
+  // Récupérer le dernier événement créé
+  const fetchLatestEvent = async () => {
+    try {
+      setIsLoadingEvent(true)
+      const response = await fetch('https://hermanbackend.onrender.com/latestEvent')
+      
+      if (!response.ok) {
+        console.error('Erreur lors de la récupération du dernier événement')
+        return null
+      }
+      
+      const data = await response.json()
+      return data.eventName || data.name || data.data?.eventName
+    } catch (error) {
+      console.error('Erreur:', error)
+      return null
+    } finally {
+      setIsLoadingEvent(false)
+    }
+  }
 
   // Réinitialiser le formulaire quand le modal s'ouvre
   useEffect(() => {
@@ -35,55 +63,80 @@ const PollModal: React.FC<PollModalProps> = ({
       setFeedback('')
       setIsSubmitting(false)
       setIsSubmitted(false)
+      
+      // Récupérer le dernier événement
+      const loadLatestEvent = async () => {
+        const eventName = await fetchLatestEvent()
+        if (eventName) {
+          setLatestEvent(eventName)
+        } else {
+          // Fallback si pas d'événement
+          setLatestEvent('Événement actuel')
+        }
+      }
+      loadLatestEvent()
     }
   }, [isVisible])
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault()
+    e.preventDefault()
 
-  // Validation basique
-  if (!name.trim() || !phone.trim() || rating === 0) {
-    return
-  }
-
-  setIsSubmitting(true)
-
-  try {
-    const response = await fetch("https://hermanbackend.onrender.com/createPoll", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        phone,
-        rating,
-        feedback,
-      }),
-    })
-
-    if (!response.ok) {
-      throw new Error("Erreur lors de l'envoi du formulaire")
+    // Validation basique
+    if (!name.trim() || !phone.trim() || rating === 0) {
+      alert('Veuillez remplir tous les champs obligatoires (nom, téléphone, note)')
+      return
     }
 
-    // Optionnel : récupérer la réponse backend
-    // const data = await response.json()
+    // Vérifier qu'on a un événement
+    if (!latestEvent) {
+      alert('Aucun événement disponible pour le moment')
+      return
+    }
 
-    setIsSubmitted(true)
+    setIsSubmitting(true)
 
-    // Fermer automatiquement après 3 secondes
-    setTimeout(() => {
-      onClose()
-    }, 3000)
+    try {
+      const pollData = {
+        eventName: latestEvent, // Utiliser le dernier événement récupéré
+        name: name.trim(),
+        phone: phone.trim(),
+        rating: rating,
+        feedback: feedback.trim(),
+      };
 
-  } catch (error) {
-    console.error(error)
-    // ici tu peux afficher un message d'erreur à l'utilisateur
-  } finally {
-    setIsSubmitting(false)
+      console.log('Données envoyées:', pollData);
+
+      const response = await fetch("https://hermanbackend.onrender.com/vote", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(pollData),
+      })
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Erreur détaillée:', errorText);
+        throw new Error("Erreur lors de l'envoi du formulaire")
+      }
+
+      const data = await response.json()
+      console.log('Réponse:', data);
+      
+      setIsSubmitted(true)
+
+      // Fermer automatiquement après 3 secondes
+      setTimeout(() => {
+        onClose()
+      }, 3000)
+
+    } catch (error) {
+      console.error('Erreur lors de la soumission:', error)
+      alert('Une erreur est survenue. Veuillez réessayer.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
-}
-
 
   const handleStarClick = (value: number) => {
     setRating(value)
@@ -121,8 +174,13 @@ const PollModal: React.FC<PollModalProps> = ({
                   {isSubmitted ? 'Merci !' : 'Évaluation de l\'événement'}
                 </h3>
                 <p className="text-white/90 text-sm">
-                  {isSubmitted ? 'Votre avis a été enregistré' : `Donnez votre avis sur l'evement`}
+                  {isSubmitted ? 'Votre avis a été enregistré' : `Donnez votre avis sur ${latestEvent}`}
                 </p>
+                {isLoadingEvent && (
+                  <p className="text-white/70 text-xs mt-1">
+                    Chargement de l'événement...
+                  </p>
+                )}
               </div>
             </div>
             {!isSubmitted && (
@@ -141,6 +199,19 @@ const PollModal: React.FC<PollModalProps> = ({
         {!isSubmitted ? (
           <form onSubmit={handleSubmit} className="p-6">
             <div className="space-y-6 max-h-[70vh] overflow-y-auto pr-2">
+              {/* Afficher l'événement actuel */}
+              <div className="bg-blue-50 border border-blue-100 rounded-xl p-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-blue-800">Événement en cours :</p>
+                    <p className="text-lg font-bold text-blue-900">{latestEvent}</p>
+                  </div>
+                  {isLoadingEvent && (
+                    <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                  )}
+                </div>
+              </div>
+
               {/* Informations personnelles */}
               <div className="space-y-4">
                 <div>
@@ -159,6 +230,7 @@ const PollModal: React.FC<PollModalProps> = ({
                       placeholder="Votre nom complet"
                       className="w-full pl-10 pr-4 py-3 border border-[#d4c5a9] rounded-xl focus:outline-none focus:border-[#1a4d2e] focus:ring-2 focus:ring-[#1a4d2e]/20"
                       required
+                      disabled={isSubmitting || isLoadingEvent}
                     />
                   </div>
                 </div>
@@ -179,6 +251,7 @@ const PollModal: React.FC<PollModalProps> = ({
                       placeholder="+225 XX XX XX XX"
                       className="w-full pl-10 pr-4 py-3 border border-[#d4c5a9] rounded-xl focus:outline-none focus:border-[#1a4d2e] focus:ring-2 focus:ring-[#1a4d2e]/20"
                       required
+                      disabled={isSubmitting || isLoadingEvent}
                     />
                   </div>
                   <p className="text-xs text-gray-500 mt-2">
@@ -190,7 +263,7 @@ const PollModal: React.FC<PollModalProps> = ({
               {/* Évaluation sur 10 */}
               <div className="pt-4 border-t border-gray-100">
                 <label className="block text-gray-900 font-medium mb-4">
-                  Notez l'evement sur 10 *
+                  Notez l'événement sur 10 *
                 </label>
                 <div className="flex flex-wrap justify-center gap-2 mb-3">
                   {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((star) => (
@@ -200,8 +273,9 @@ const PollModal: React.FC<PollModalProps> = ({
                       onClick={() => handleStarClick(star)}
                       onMouseEnter={() => handleStarHover(star)}
                       onMouseLeave={handleStarLeave}
-                      className="focus:outline-none"
+                      className="focus:outline-none disabled:opacity-50"
                       aria-label={`Noter ${star}/10`}
+                      disabled={isSubmitting || isLoadingEvent}
                     >
                       <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all ${
                         star <= (hoverRating || rating)
@@ -239,6 +313,7 @@ const PollModal: React.FC<PollModalProps> = ({
                   placeholder="Partagez votre expérience, vos suggestions d'amélioration..."
                   className="w-full p-4 border border-[#d4c5a9] rounded-xl focus:outline-none focus:border-[#1a4d2e] focus:ring-2 focus:ring-[#1a4d2e]/20 min-h-32 resize-none"
                   maxLength={500}
+                  disabled={isSubmitting || isLoadingEvent}
                 />
                 <div className="flex justify-between items-center mt-2">
                   <p className="text-xs text-gray-500">
@@ -254,17 +329,22 @@ const PollModal: React.FC<PollModalProps> = ({
               <div className="pt-6 border-t border-gray-100">
                 <button
                   type="submit"
-                  disabled={isSubmitting || !name.trim() || !phone.trim() || rating === 0}
+                  disabled={isSubmitting || isLoadingEvent || !name.trim() || !phone.trim() || rating === 0 || !latestEvent}
                   className={`w-full py-4 rounded-xl font-semibold text-lg flex items-center justify-center gap-3 transition-all ${
-                    (!name.trim() || !phone.trim() || rating === 0)
+                    (isSubmitting || isLoadingEvent || !name.trim() || !phone.trim() || rating === 0 || !latestEvent)
                       ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                       : 'bg-[#1a4d2e] text-white hover:bg-[#0e3d1f] active:scale-[0.98]'
-                  } ${isSubmitting ? 'opacity-75' : ''}`}
+                  }`}
                 >
                   {isSubmitting ? (
                     <>
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                       <span>Envoi en cours...</span>
+                    </>
+                  ) : isLoadingEvent ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-[#1a4d2e] border-t-transparent rounded-full animate-spin" />
+                      <span>Chargement...</span>
                     </>
                   ) : (
                     <>
@@ -286,7 +366,7 @@ const PollModal: React.FC<PollModalProps> = ({
               Merci {name} !
             </h4>
             <p className="text-gray-600 mb-2">
-              Votre évaluation a été enregistrée avec succès.
+              Votre évaluation pour <span className="font-semibold">{latestEvent}</span> a été enregistrée avec succès.
             </p>
             <p className="text-gray-500 text-sm">
               Nous vous remercions pour votre participation.
