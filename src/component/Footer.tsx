@@ -142,10 +142,10 @@ export function Footer() {
                 <div>
                   <p className="text-[#d4c5a9] text-xs mb-1">Téléphone</p>
                   <a
-                    href="tel:+1234567890"
+                    href="tel:+2250101107983"
                     className="text-white hover:text-[#ff6347] transition-colors font-medium"
                   >
-                    +XXX XX XX XX XX
+                    (00225) 01 01 10 79 83 / 07 09 21 37 51
                   </a>
                 </div>
               </li>
@@ -171,7 +171,8 @@ export function Footer() {
                 © {currentYear} Hermane Consulting & Audit. Tous droits réservés.
               </p>
             </div>
-            
+
+           {/* 
             <div className="flex flex-wrap justify-center gap-6 text-[#d4c5a9] text-sm">
               <a href="#" className="hover:text-white transition-colors">
                 Mentions légales
@@ -185,7 +186,8 @@ export function Footer() {
               <a href="#" className="hover:text-white transition-colors">
                 CGV
               </a>
-            </div>
+            </div> */}
+            
           </div>
         </div>
 

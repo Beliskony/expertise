@@ -41,11 +41,11 @@ const ServiceBox = ({ service }: Props) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Background Pattern on Hover */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"> </div>
+      <div className="absolute inset-0 opacity-0 hover:opacity-10 transition-opacity duration-500"> </div>
       
       <div className="relative grid md:grid-cols-2 gap-8 p-8">
         {/* Left Column - Image & Visual */}
-        <div className="space-y-6">
+        <div className="space-y-6 gap-y-2.5">
           {/* Image Section */}
           <div className="relative overflow-hidden rounded-xl">
             <div className="relative h-56 overflow-hidden rounded-xl">
@@ -53,9 +53,7 @@ const ServiceBox = ({ service }: Props) => {
                 <img
                   src={service.image1}
                   alt='image1'
-                  className={`w-full h-full object-cover transition-transform duration-700 ${
-                    isHovered ? "scale-110" : "scale-100"
-                  }`}
+                  className="w-full h-full object-cover transition-transform duration-700" 
                 />
               ) : (
                 <div className= "w-full h-full flex items-center justify-center">
@@ -77,9 +75,7 @@ const ServiceBox = ({ service }: Props) => {
                 <img
                   src={service.image2}
                   alt='image2'
-                  className={`w-full h-full object-cover transition-transform duration-700 ${
-                    isHovered ? "scale-110" : "scale-100"
-                  }`}
+                  className="w-full h-full object-cover transition-transform duration-700"
                 />
               ) : (
                 <div className= "w-full h-full flex items-center justify-center">

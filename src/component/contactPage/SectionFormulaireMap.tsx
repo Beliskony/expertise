@@ -21,7 +21,7 @@ const SectionFormulaireMap = () => {
   return (
     <>
       {/* Hero Section Contact */}
-      <section className="relative pt-32 pb-20 min-h-[50vh] flex items-center justify-center bg-gradient-to-br from-[#1a4d2e]/90 via-[#1a4d2e]/80 to-[#6b8e23]/85 text-white">
+      <section className="relative pt-32 pb-20 min-h-[50vh] flex items-center justify-center bg-linear-to-br from-[#1a4d2e]/90 via-[#1a4d2e]/80 to-[#6b8e23]/85 text-white">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-10"></div>
         </div>
@@ -76,21 +76,21 @@ const SectionFormulaireMap = () => {
                   { 
                     icon: Mail, 
                     title: "Email Professionnel", 
-                    value: "jean.dupont@expert-durabilite.com",
-                    link: "mailto:jean.dupont@expert-durabilite.com",
+                    value: "hermannassoua@yahoo.fr, hermannassoua@gmail.com ",
+                    link: "mailto:hermannassoua@gmail.com",
                     color: "bg-[#1a4d2e]/10"
                   },
                   { 
                     icon: Phone, 
                     title: "Téléphone Mobile", 
-                    value: "+33 6 12 34 56 78",
-                    link: "tel:+33612345678",
+                    value: "(00225) 01 01 10 79 83 / 07 09 21 37 51",
+                    link: "tel:+2250101107983",
                     color: "bg-[#6b8e23]/10"
                   },
                   { 
                     icon: MapPin, 
                     title: "Bureau Principal", 
-                    value: "123 Avenue de la Durabilité, 75000 Paris",
+                    value: "Abidjan, Côte d'Ivoire",
                     link: "https://maps.google.com",
                     color: "bg-[#ff6347]/10"
                   },
@@ -126,7 +126,7 @@ const SectionFormulaireMap = () => {
               </div>
 
               {/* Avantages du Contact Direct */}
-              <div className="border-2 border-[#d4c5a9] rounded-xl p-6 bg-gradient-to-br from-[#1a4d2e]/5 to-transparent hover:border-[#1a4d2e] transition-all duration-300">
+              <div className="border-2 border-[#d4c5a9] rounded-xl p-6 bg-linear-to-br from-[#1a4d2e]/5 to-transparent hover:border-[#1a4d2e] transition-all duration-300">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="p-2 bg-[#ff6347] rounded-lg">
                     <CheckCircle className="w-5 h-5 text-white" />
@@ -207,7 +207,7 @@ const SectionFormulaireMap = () => {
                   <div className="space-y-2">
                     <label className="font-medium text-gray-700 flex items-center gap-2">
                       <Mail className="w-4 h-4" />
-                      Email professionnel *
+                      Email *
                     </label>
                     <input
                       type="email"
@@ -230,7 +230,7 @@ const SectionFormulaireMap = () => {
                       className="w-full px-4 py-3 border-2 border-[#d4c5a9] rounded-lg focus:outline-none focus:border-[#1a4d2e] focus:ring-2 focus:ring-[#1a4d2e]/20 transition-all placeholder-gray-400"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+33 6 12 34 56 78"
+                      placeholder="0707070707"
                     />
                   </div>
 
@@ -262,9 +262,9 @@ const SectionFormulaireMap = () => {
                     >
                       <option value="">Sélectionnez votre besoin</option>
                       <option value="consultation">Consultation initiale</option>
+                      <option value="plan">Plans de Gestion Environnementale et Sociale</option>
                       <option value="audit">Audit environnemental/social</option>
-                      <option value="rspo">Certification RSPO</option>
-                      <option value="iso">Certification ISO</option>
+                      <option value="EESS">Évaluations Environnementales Stratégiques</option>
                       <option value="formation">Formation/Coaching</option>
                       <option value="eies">Étude d'impact (EIES)</option>
                       <option value="strategie">Stratégie de durabilité</option>

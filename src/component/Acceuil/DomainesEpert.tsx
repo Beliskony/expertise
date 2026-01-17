@@ -151,7 +151,7 @@ const DomainesExpert = () => {
           </div>
 
           {/* Bannière d'expertise */}
-          <div className="mt-16 bg-gradient-to-r from-[#1a4d2e] to-[#6b8e23] rounded-2xl p-8 text-white">
+          <div className="mt-16 bg-linear-to-r from-[#1a4d2e] to-[#6b8e23] rounded-2xl p-8 text-white">
             <div className="flex flex-col md:flex-row items-center justify-between gap-8">
               <div>
                 <h3 className="text-2xl font-bold mb-3">Une expertise multisectorielle</h3>
@@ -161,10 +161,6 @@ const DomainesExpert = () => {
                 </p>
               </div>
               <div className="flex flex-wrap gap-4">
-                <div className="text-center bg-white/20 px-4 py-2 rounded-lg max-lg:w-full">
-                  <div className="text-2xl font-bold">15+</div>
-                  <div className="text-sm text-white/90">Années d'expérience</div>
-                </div>
                 <div className="text-center bg-white/20 px-4 py-2 rounded-lg max-lg:w-full">
                   <div className="text-2xl font-bold">200+</div>
                   <div className="text-sm text-white/90">Clients satisfaits</div>

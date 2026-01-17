@@ -84,32 +84,6 @@ const ServiceSectionList = () => {
             )}
           </div>
 
-          {/* Stats Banner */}
-          <div className="mt-16 bg-linear-to-r from-[#1a4d2e] to-[#6b8e23] rounded-2xl p-8 text-white">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-              <div className="md:w-2/3">
-                <h3 className="text-2xl font-bold mb-3">Un accompagnement complet</h3>
-                <p className="text-white/90">
-                  Chaque service inclut : diagnostic personnalisé, plan d'action détaillé, 
-                  mise en œuvre accompagnée et suivi post-intervention.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-6">
-                <div className="text-center">
-                  <div className="text-3xl font-bold">100%</div>
-                  <div className="text-sm text-white/90">Projets sur mesure</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold">24h</div>
-                  <div className="text-sm text-white/90">Délai de réponse</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold">15+</div>
-                  <div className="text-sm text-white/90">Types de services</div>
-                </div>
-              </div>
-            </div>
-          </div>
 
         </div>
       </div>

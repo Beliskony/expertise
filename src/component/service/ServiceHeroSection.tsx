@@ -2,20 +2,23 @@ import { CheckCircle, Target, Users } from 'lucide-react'
 
 const ServiceHeroSection = () => {
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-      {/* Background Image with Gradient Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/services/hero-bg.jpg" // Remplacez par votre image
-          alt="Expert en durabilité - Services"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-linear-to-r from-[#1a4d2e]/90 via-[#1a4d2e]/80 to-[#6b8e23]/85" />
-      </div>
+    <section className="relative min-h-[70vh] bg-linear-to-br from-[#1a4d2e] via-[#2d6a4f] to-[#6b8e23] text-white py-20 lg:py-28 flex items-center justify-center overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundSize: '30px 30px'
+        }}></div>
+      
+      {/* Decorative elements */}
+      <div className="absolute top-10 right-10 w-40 h-40 bg-white/5 rounded-full blur-3xl z-20"></div>
+      <div className="absolute bottom-10 left-10 w-60 h-60 bg-emerald-400/10 rounded-full blur-3xl z-20"></div>
+</div>
+     
       
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 py-20">
-        <div className="max-w-4xl mx-auto text-center space-y-10">
+      <div className="relative container mx-auto px-4 py-14">
+        <div className="max-w-4xl mx-auto text-center space-y-7">
   
 
           {/* Main Title */}
@@ -30,8 +33,8 @@ const ServiceHeroSection = () => {
           </p>
 
           {/* Key Features */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8">
-            <div className="flex flex-col items-center p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+            <div className="flex flex-col items-center p-4 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 hover:scale-110 transition-transform cursor-pointer">
               <div className="p-4 bg-white rounded-full mb-4">
                 <Target className="w-8 h-8 text-[#1a4d2e]" />
               </div>
@@ -41,7 +44,7 @@ const ServiceHeroSection = () => {
               </p>
             </div>
 
-            <div className="flex flex-col items-center p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20">
+            <div className="flex flex-col items-center p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 hover:scale-110 transition-transform cursor-pointer">
               <div className="p-4 bg-white rounded-full mb-4">
                 <Users className="w-8 h-8 text-[#1a4d2e]" />
               </div>
@@ -51,7 +54,7 @@ const ServiceHeroSection = () => {
               </p>
             </div>
 
-            <div className="flex flex-col items-center p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20">
+            <div className="flex flex-col items-center p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 hover:scale-110 transition-transform cursor-pointer">
               <div className="p-4 bg-white rounded-full mb-4">
                 <CheckCircle className="w-8 h-8 text-[#1a4d2e]" />
               </div>
