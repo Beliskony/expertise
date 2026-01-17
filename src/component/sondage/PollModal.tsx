@@ -14,8 +14,8 @@ interface PollModalProps {
 }
 
 interface LatestEvent {
-  eventName: string
-  // autres propriétés si nécessaire
+  _id: string
+  name: string
 }
 
 const PollModal: React.FC<PollModalProps> = ({ 
@@ -30,7 +30,7 @@ const PollModal: React.FC<PollModalProps> = ({
   const [feedback, setFeedback] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const [latestEvent, setLatestEvent] = useState<string>('')
+  const [latestEvent, setLatestEvent] = useState<LatestEvent | null>(null)
   const [isLoadingEvent, setIsLoadingEvent] = useState(false)
 
   // Récupérer le dernier événement créé
@@ -44,8 +44,13 @@ const PollModal: React.FC<PollModalProps> = ({
         return null
       }
       
-      const data = await response.json()
-      return data.eventName || data.name || data.data?.eventName
+      const data = await response.json();
+      setLatestEvent({
+          _id: data._id,
+          name: data.name
+      });
+
+      return data
     } catch (error) {
       console.error('Erreur:', error)
       return null
@@ -71,7 +76,7 @@ const PollModal: React.FC<PollModalProps> = ({
           setLatestEvent(eventName)
         } else {
           // Fallback si pas d'événement
-          setLatestEvent('Événement actuel')
+          setLatestEvent(latestEvent)
         }
       }
       loadLatestEvent()
@@ -97,7 +102,7 @@ const PollModal: React.FC<PollModalProps> = ({
 
     try {
       const pollData = {
-        eventName: latestEvent, // Utiliser le dernier événement récupéré
+        eventName: latestEvent._id, // Utiliser le dernier événement récupéré
         name: name.trim(),
         phone: phone.trim(),
         rating: rating,
@@ -204,7 +209,7 @@ const PollModal: React.FC<PollModalProps> = ({
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-blue-800">Événement en cours :</p>
-                    <p className="text-lg font-bold text-blue-900">{latestEvent}</p>
+                    <p className="text-lg font-bold text-blue-900">{latestEvent?.name}</p>
                   </div>
                   {isLoadingEvent && (
                     <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
@@ -366,7 +371,7 @@ const PollModal: React.FC<PollModalProps> = ({
               Merci {name} !
             </h4>
             <p className="text-gray-600 mb-2">
-              Votre évaluation pour <span className="font-semibold">{latestEvent}</span> a été enregistrée avec succès.
+              Votre évaluation pour <span className="font-semibold">{latestEvent?.name}</span> a été enregistrée avec succès.
             </p>
             <p className="text-gray-500 text-sm">
               Nous vous remercions pour votre participation.
