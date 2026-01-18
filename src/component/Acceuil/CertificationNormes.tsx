@@ -1,5 +1,5 @@
 import { Globe, TrendingUp, Users, Shield, Target, Zap } from 'lucide-react'
-
+import { motion } from 'framer-motion'
 
 const CertificationNormes = () => {
   const reasons = [
@@ -51,31 +51,63 @@ const CertificationNormes = () => {
     <>
 
       {/* SECTION POURQUOI NOUS CHOISIR */}
-      <section className="py-16 md:py-20 bg-white">
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        className="py-16 md:py-20 bg-white"
+      >
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <motion.h2 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+              >
                 Pourquoi <span className="text-[#ff6347]">Me</span> Choisir ?
-              </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              </motion.h2>
+              <motion.p 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="text-gray-600 text-lg max-w-2xl mx-auto"
+              >
                  En tant qu'expert indépendant, je vous offre un accompagnement direct et personnalisé, 
                  sans les délais et les frais d'une structure intermédiaire. Mon approche garantit 
                  une expertise de premier plan et une attention personnalisée à chaque projet.
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
 
             {/* Grille de raisons */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {reasons.map((reason, index) => (
-                <div 
-                  key={index} 
-                  className="group bg-white border-2 border-[#d4c5a9] rounded-xl p-6 hover:border-[#1a4d2e] hover:shadow-xl transition-all duration-300"
+                <motion.div 
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ 
+                    y: -10,
+                    borderColor: "#1a4d2e",
+                    boxShadow: "0px 20px 40px rgba(26, 77, 46, 0.15)"
+                  }}
+                  className="group bg-white border-2 border-[#d4c5a9] rounded-xl p-6 hover:shadow-xl"
                 >
                   <div className="flex items-start gap-4 mb-4">
-                    <div className={`p-3 rounded-xl ${reason.color} shrink-0`}>
+                    <motion.div 
+                      whileHover={{ rotate: 15, scale: 1.1 }}
+                      className={`p-3 rounded-xl ${reason.color} shrink-0`}
+                    >
                       <reason.icon className="w-6 h-6 text-white" />
-                    </div>
+                    </motion.div>
                     <div>
                       <h3 className="font-bold text-lg text-gray-900 mb-1">{reason.title}</h3>
                       <p className="text-gray-600 text-sm">{reason.description}</p>
@@ -84,26 +116,39 @@ const CertificationNormes = () => {
                   
                   <ul className="space-y-2 mt-4">
                     {reason.features.map((feature, i) => (
-                      <li key={i} className="flex items-center gap-2 text-sm text-gray-700">
-                        <span className="w-1.5 h-1.5 bg-[#1a4d2e] rounded-full"></span>
+                      <motion.li 
+                        key={i}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.1 * i }}
+                        className="flex items-center gap-2 text-sm text-gray-700"
+                      >
+                        <motion.span 
+                          whileHover={{ scale: 1.5 }}
+                          className="w-1.5 h-1.5 bg-[#1a4d2e] rounded-full"
+                        ></motion.span>
                         {feature}
-                      </li>
+                      </motion.li>
                     ))}
                   </ul>
                   
-                  <div className="mt-6 pt-5 border-t border-[#d4c5a9] group-hover:border-[#1a4d2e] transition-colors">
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="mt-6 pt-5 border-t border-[#d4c5a9] group-hover:border-[#1a4d2e]"
+                  >
                     <span className="text-xs text-gray-500 font-medium">
                       {reason.color.includes('#1a4d2e') ? "Certifications" : 
                        reason.color.includes('#6b8e23') ? "Normes" : "Services"}
                     </span>
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               ))}
             </div>
 
           </div>
         </div>
-      </section>
+      </motion.section>
     </>
   )
 }

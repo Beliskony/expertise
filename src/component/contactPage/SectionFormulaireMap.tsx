@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Mail, Phone, MapPin, Clock, Send, User, Building, MessageSquare, Calendar, FileText, CheckCircle } from "lucide-react"
+import { motion } from "framer-motion"
 
 const SectionFormulaireMap = () => {
   const [formData, setFormData] = useState({
@@ -21,42 +22,71 @@ const SectionFormulaireMap = () => {
   return (
     <>
       {/* Hero Section Contact */}
-      <section className="relative pt-32 pb-20 min-h-[50vh] flex items-center justify-center bg-linear-to-br from-[#1a4d2e]/90 via-[#1a4d2e]/80 to-[#6b8e23]/85 text-white">
+      <motion.section 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="relative pt-32 pb-20 min-h-[50vh] flex items-center justify-center bg-linear-to-br from-[#1a4d2e]/90 via-[#1a4d2e]/80 to-[#6b8e23]/85 text-white"
+      >
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-10"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-8">
-       
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+            >
+              Discutons de <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                className="text-emerald-300"
+              >
+                Votre Projet
+              </motion.span>
+            </motion.h1>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Discutons de <span className="text-emerald-300">Votre Projet</span>
-            </h1>
-
-            <p className="text-xl text-emerald-50/90 max-w-2xl mx-auto leading-relaxed">
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+              className="text-xl text-emerald-50/90 max-w-2xl mx-auto leading-relaxed"
+            >
               En tant qu'expert indépendant, je vous propose un accompagnement personnalisé 
               pour vos besoins en certification et durabilité. Contactez-moi directement pour une consultation.
-            </p>
+            </motion.p>
 
             {/* Quick Stats */}
-            <div className="flex flex-wrap justify-center gap-8 pt-8">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-emerald-300">24h</div>
-                <div className="text-sm text-emerald-200">Réponse garantie</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-emerald-300">Gratuit</div>
-                <div className="text-sm text-emerald-200">Premier diagnostic</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-emerald-300">100%</div>
-                <div className="text-sm text-emerald-200">Accompagnement direct</div>
-              </div>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9, duration: 0.8 }}
+              className="flex flex-wrap justify-center gap-8 pt-8"
+            >
+              {[
+                { value: "24h", label: "Réponse garantie" },
+                { value: "Gratuit", label: "Premier diagnostic" },
+                { value: "100%", label: "Accompagnement direct" }
+              ].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.0 + index * 0.1, type: "spring" }}
+                  whileHover={{ scale: 1.1 }}
+                  className="text-center"
+                >
+                  <div className="text-3xl font-bold text-emerald-300">{stat.value}</div>
+                  <div className="text-sm text-emerald-200">{stat.label}</div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Form + Infos */}
       <section className="py-20 bg-white">
@@ -64,11 +94,20 @@ const SectionFormulaireMap = () => {
           <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-8">
             {/* Mes Coordonnées Personnelles */}
             <div className="space-y-6">
-              <div className="border-2 border-[#d4c5a9] rounded-xl p-6 bg-white shadow-sm space-y-6 hover:border-[#1a4d2e] transition-all duration-300">
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+                className="border-2 border-[#d4c5a9] rounded-xl p-6 bg-white shadow-sm space-y-6 hover:border-[#1a4d2e]"
+              >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-[#1a4d2e] rounded-lg">
+                  <motion.div 
+                    whileHover={{ rotate: 15 }}
+                    className="p-2 bg-[#1a4d2e] rounded-lg"
+                  >
                     <User className="w-5 h-5 text-white" />
-                  </div>
+                  </motion.div>
                   <h3 className="text-xl font-bold text-[#1a4d2e]">Contactez-moi Directement</h3>
                 </div>
 
@@ -102,16 +141,25 @@ const SectionFormulaireMap = () => {
                     color: "bg-[#d4c5a9]/20"
                   },
                 ].map(({ icon: Icon, title, value, link, color }, i) => (
-                  <div key={i} className="flex gap-4 group">
-                    <div className={`w-12 h-12 rounded-xl ${color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 * i }}
+                    className="flex gap-4 group"
+                  >
+                    <motion.div 
+                      whileHover={{ scale: 1.1 }}
+                      className={`w-12 h-12 rounded-xl ${color} flex items-center justify-center`}
+                    >
                       <Icon className="w-5 h-5 text-[#1a4d2e]" />
-                    </div>
+                    </motion.div>
                     <div className="flex-1">
                       <p className="font-semibold text-gray-900 mb-1">{title}</p>
                       {link ? (
                         <a 
                           href={link} 
-                          className="text-[#1a4d2e] hover:text-[#ff6347] transition-colors font-medium text-sm leading-tight break-words"
+                          className="text-[#1a4d2e] hover:text-[#ff6347] transition-colors font-medium text-sm leading-tight wrap-break-words"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -121,16 +169,26 @@ const SectionFormulaireMap = () => {
                         <p className="text-gray-600 text-sm whitespace-pre-line">{value}</p>
                       )}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
 
               {/* Avantages du Contact Direct */}
-              <div className="border-2 border-[#d4c5a9] rounded-xl p-6 bg-linear-to-br from-[#1a4d2e]/5 to-transparent hover:border-[#1a4d2e] transition-all duration-300">
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                whileHover={{ y: -5 }}
+                className="border-2 border-[#d4c5a9] rounded-xl p-6 bg-linear-to-br from-[#1a4d2e]/5 to-transparent hover:border-[#1a4d2e]"
+              >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-[#ff6347] rounded-lg">
+                  <motion.div 
+                    whileHover={{ rotate: 15 }}
+                    className="p-2 bg-[#ff6347] rounded-lg"
+                  >
                     <CheckCircle className="w-5 h-5 text-white" />
-                  </div>
+                  </motion.div>
                   <h4 className="font-bold text-[#1a4d2e]">Pourquoi me contacter ?</h4>
                 </div>
                 
@@ -142,18 +200,34 @@ const SectionFormulaireMap = () => {
                     { text: "Devis transparent et détaillé", icon: "✓" },
                     { text: "Suivi personnalisé tout au long du projet", icon: "✓" },
                   ].map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-sm text-gray-700">
-                      <span className="w-5 h-5 rounded-full bg-[#1a4d2e] text-white flex items-center justify-center text-xs mt-0.5">
+                    <motion.li 
+                      key={idx}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 * idx }}
+                      className="flex items-start gap-3 text-sm text-gray-700"
+                    >
+                      <motion.span 
+                        whileHover={{ scale: 1.2 }}
+                        className="w-5 h-5 rounded-full bg-[#1a4d2e] text-white flex items-center justify-center text-xs mt-0.5"
+                      >
                         {item.icon}
-                      </span>
+                      </motion.span>
                       <span>{item.text}</span>
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
 
               {/* Disponibilités */}
-              <div className="border-2 border-[#d4c5a9] rounded-xl p-6 bg-white hover:border-[#1a4d2e] transition-all duration-300">
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                whileHover={{ y: -5 }}
+                className="border-2 border-[#d4c5a9] rounded-xl p-6 bg-white hover:border-[#1a4d2e]"
+              >
                 <div className="flex items-center gap-3 mb-4">
                   <Calendar className="w-5 h-5 text-[#1a4d2e]" />
                   <h4 className="font-bold text-[#1a4d2e]">Disponibilités</h4>
@@ -162,24 +236,36 @@ const SectionFormulaireMap = () => {
                   <p className="text-sm text-gray-600">Prochaines créneaux disponibles :</p>
                   <div className="flex flex-wrap gap-2">
                     {["Lun 10h", "Mar 14h", "Mer 11h", "Jeu 16h", "Ven 9h"].map((slot, i) => (
-                      <button
+                      <motion.button
                         key={i}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
                         className="px-3 py-1.5 bg-[#d4c5a9]/20 hover:bg-[#1a4d2e] hover:text-white text-sm rounded-lg transition-colors"
                       >
                         {slot}
-                      </button>
+                      </motion.button>
                     ))}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             {/* Formulaire de Contact */}
-            <div className="lg:col-span-2 border-2 border-[#d4c5a9] rounded-xl shadow-xl p-8 bg-white hover:border-[#1a4d2e] transition-all duration-300">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              whileHover={{ y: -5 }}
+              className="lg:col-span-2 border-2 border-[#d4c5a9] rounded-xl shadow-xl p-8 bg-white hover:border-[#1a4d2e]"
+            >
               <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 bg-[#1a4d2e] rounded-xl">
+                <motion.div 
+                  whileHover={{ rotate: 15 }}
+                  className="p-3 bg-[#1a4d2e] rounded-xl"
+                >
                   <Send className="w-7 h-7 text-white" />
-                </div>
+                </motion.div>
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
                     Demander une <span className="text-[#1a4d2e]">Consultation</span>
@@ -190,135 +276,156 @@ const SectionFormulaireMap = () => {
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="font-medium text-gray-700 flex items-center gap-2">
-                      <User className="w-4 h-4" />
-                      Nom complet *
-                    </label>
-                    <input
-                      className="w-full px-4 py-3 border-2 border-[#d4c5a9] rounded-lg focus:outline-none focus:border-[#1a4d2e] focus:ring-2 focus:ring-[#1a4d2e]/20 transition-all placeholder-gray-400"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      required
-                      placeholder="Votre nom et prénom"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="font-medium text-gray-700 flex items-center gap-2">
-                      <Mail className="w-4 h-4" />
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      className="w-full px-4 py-3 border-2 border-[#d4c5a9] rounded-lg focus:outline-none focus:border-[#1a4d2e] focus:ring-2 focus:ring-[#1a4d2e]/20 transition-all placeholder-gray-400"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      required
-                      placeholder="email@entreprise.com"
-                    />
-                  </div>
+                  {[
+                    { label: "Nom complet *", icon: User, field: "name", placeholder: "Votre nom et prénom" },
+                    { label: "Email *", icon: Mail, field: "email", placeholder: "email@entreprise.com", type: "email" },
+                  ].map((field, index) => (
+                    <motion.div
+                      key={field.field}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 * index }}
+                      className="space-y-2"
+                    >
+                      <label className="font-medium text-gray-700 flex items-center gap-2">
+                        <field.icon className="w-4 h-4" />
+                        {field.label}
+                      </label>
+                      <motion.input
+                        whileFocus={{ scale: 1.02 }}
+                        type={field.type || "text"}
+                        className="w-full px-4 py-3 border-2 border-[#d4c5a9] rounded-lg focus:outline-none focus:border-[#1a4d2e] focus:ring-2 focus:ring-[#1a4d2e]/20 transition-all placeholder-gray-400"
+                        value={formData[field.field as keyof typeof formData]}
+                        onChange={(e) => setFormData({ ...formData, [field.field]: e.target.value })}
+                        required={field.label.includes('*')}
+                        placeholder={field.placeholder}
+                      />
+                    </motion.div>
+                  ))}
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="font-medium text-gray-700 flex items-center gap-2">
-                      <Phone className="w-4 h-4" />
-                      Téléphone
-                    </label>
-                    <input
-                      className="w-full px-4 py-3 border-2 border-[#d4c5a9] rounded-lg focus:outline-none focus:border-[#1a4d2e] focus:ring-2 focus:ring-[#1a4d2e]/20 transition-all placeholder-gray-400"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="0707070707"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="font-medium text-gray-700 flex items-center gap-2">
-                      <Building className="w-4 h-4" />
-                      Organisation
-                    </label>
-                    <input
-                      className="w-full px-4 py-3 border-2 border-[#d4c5a9] rounded-lg focus:outline-none focus:border-[#1a4d2e] focus:ring-2 focus:ring-[#1a4d2e]/20 transition-all placeholder-gray-400"
-                      value={formData.company}
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      placeholder="Votre entreprise ou organisation"
-                    />
-                  </div>
+                  {[
+                    { label: "Téléphone", icon: Phone, field: "phone", placeholder: "0707070707" },
+                    { label: "Organisation", icon: Building, field: "company", placeholder: "Votre entreprise ou organisation" },
+                  ].map((field, index) => (
+                    <motion.div
+                      key={field.field}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 + 0.1 * index }}
+                      className="space-y-2"
+                    >
+                      <label className="font-medium text-gray-700 flex items-center gap-2">
+                        <field.icon className="w-4 h-4" />
+                        {field.label}
+                      </label>
+                      <motion.input
+                        whileFocus={{ scale: 1.02 }}
+                        className="w-full px-4 py-3 border-2 border-[#d4c5a9] rounded-lg focus:outline-none focus:border-[#1a4d2e] focus:ring-2 focus:ring-[#1a4d2e]/20 transition-all placeholder-gray-400"
+                        value={formData[field.field as keyof typeof formData]}
+                        onChange={(e) => setFormData({ ...formData, [field.field]: e.target.value })}
+                        placeholder={field.placeholder}
+                      />
+                    </motion.div>
+                  ))}
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="font-medium text-gray-700 flex items-center gap-2">
-                      <FileText className="w-4 h-4" />
-                      Type de besoin *
-                    </label>
-                    <select
-                      className="w-full px-4 py-3 border-2 border-[#d4c5a9] rounded-lg focus:outline-none focus:border-[#1a4d2e] focus:ring-2 focus:ring-[#1a4d2e]/20 transition-all bg-white"
-                      value={formData.service}
-                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      required
+                  {[
+                    { label: "Type de besoin *", icon: FileText, field: "service", isSelect: true },
+                    { label: "Urgence du projet", icon: Calendar, field: "urgency", isSelect: true },
+                  ].map((field, index) => (
+                    <motion.div
+                      key={field.field}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 + 0.1 * index }}
+                      className="space-y-2"
                     >
-                      <option value="">Sélectionnez votre besoin</option>
-                      <option value="consultation">Consultation initiale</option>
-                      <option value="plan">Plans de Gestion Environnementale et Sociale</option>
-                      <option value="audit">Audit environnemental/social</option>
-                      <option value="EESS">Évaluations Environnementales Stratégiques</option>
-                      <option value="formation">Formation/Coaching</option>
-                      <option value="eies">Étude d'impact (EIES)</option>
-                      <option value="strategie">Stratégie de durabilité</option>
-                      <option value="autre">Autre demande</option>
-                    </select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="font-medium text-gray-700 flex items-center gap-2">
-                      <Calendar className="w-4 h-4" />
-                      Urgence du projet
-                    </label>
-                    <select
-                      className="w-full px-4 py-3 border-2 border-[#d4c5a9] rounded-lg focus:outline-none focus:border-[#1a4d2e] focus:ring-2 focus:ring-[#1a4d2e]/20 transition-all bg-white"
-                      value={formData.urgency}
-                      onChange={(e) => setFormData({ ...formData, urgency: e.target.value })}
-                    >
-                      <option value="">Délai souhaité</option>
-                      <option value="urgent">Urgent (sous 1 mois)</option>
-                      <option value="court">Court terme (1-3 mois)</option>
-                      <option value="moyen">Moyen terme (3-6 mois)</option>
-                      <option value="long">Long terme (6+ mois)</option>
-                    </select>
-                  </div>
+                      <label className="font-medium text-gray-700 flex items-center gap-2">
+                        <field.icon className="w-4 h-4" />
+                        {field.label}
+                      </label>
+                      <motion.select
+                        whileFocus={{ scale: 1.02 }}
+                        className="w-full px-4 py-3 border-2 border-[#d4c5a9] rounded-lg focus:outline-none focus:border-[#1a4d2e] focus:ring-2 focus:ring-[#1a4d2e]/20 transition-all bg-white"
+                        value={formData[field.field as keyof typeof formData]}
+                        onChange={(e) => setFormData({ ...formData, [field.field]: e.target.value })}
+                        required={field.label.includes('*')}
+                      >
+                        {field.field === "service" ? (
+                          <>
+                            <option value="">Sélectionnez votre besoin</option>
+                            <option value="consultation">Consultation initiale</option>
+                            <option value="plan">Plans de Gestion Environnementale et Sociale</option>
+                            <option value="audit">Audit environnemental/social</option>
+                            <option value="EESS">Évaluations Environnementales Stratégiques</option>
+                            <option value="formation">Formation/Coaching</option>
+                            <option value="eies">Étude d'impact (EIES)</option>
+                            <option value="strategie">Stratégie de durabilité</option>
+                            <option value="autre">Autre demande</option>
+                          </>
+                        ) : (
+                          <>
+                            <option value="">Délai souhaité</option>
+                            <option value="urgent">Urgent (sous 1 mois)</option>
+                            <option value="court">Court terme (1-3 mois)</option>
+                            <option value="moyen">Moyen terme (3-6 mois)</option>
+                            <option value="long">Long terme (6+ mois)</option>
+                          </>
+                        )}
+                      </motion.select>
+                    </motion.div>
+                  ))}
                 </div>
 
-                <div className="space-y-2">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="space-y-2"
+                >
                   <label className="font-medium text-gray-700 flex items-center gap-2">
                     <MessageSquare className="w-4 h-4" />
                     Décrivez votre projet *
                   </label>
-                  <textarea
+                  <motion.textarea
+                    whileFocus={{ scale: 1.01 }}
                     className="w-full px-4 py-3 border-2 border-[#d4c5a9] rounded-lg min-h-40 focus:outline-none focus:border-[#1a4d2e] focus:ring-2 focus:ring-[#1a4d2e]/20 transition-all placeholder-gray-400"
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     required
                     placeholder="Décrivez votre projet, vos objectifs, vos contraintes et vos questions spécifiques..."
                   />
-                </div>
+                </motion.div>
 
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-[#d4c5a9]">
-                  <button
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.8 }}
+                  className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-[#d4c5a9]"
+                >
+                  <motion.button
                     type="submit"
-                    className="group inline-flex items-center gap-3 px-8 py-4 rounded-lg bg-[#1a4d2e] text-white font-semibold hover:bg-[#163e24] transition-colors shadow-lg hover:shadow-xl min-w-[200px] justify-center"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="group inline-flex items-center gap-3 px-8 py-4 rounded-lg bg-[#1a4d2e] text-white font-semibold hover:bg-[#163e24] shadow-lg hover:shadow-xl min-w-50 justify-center"
                   >
-                    <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <motion.span
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 400 }}
+                    >
+                      <Send className="w-4 h-4" />
+                    </motion.span>
                     Envoyer ma demande
-                  </button>
+                  </motion.button>
                   <p className="text-sm text-gray-500 text-center">
                     <span className="font-medium text-[#1a4d2e]">Garantie :</span> Réponse personnelle dans les 24h ouvrables
                   </p>
-                </div>
+                </motion.div>
               </form>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

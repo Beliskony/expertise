@@ -64,7 +64,7 @@ const Header: React.FC = () => {
               <img 
                 src="/logo.png" 
                 alt="Logo Hermane" 
-                className="h-16 w-auto"
+                className="h-14 w-auto"
               />
             </Link>
 

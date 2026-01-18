@@ -1,8 +1,12 @@
-// components/ActualitesHeroSection.tsx
+import { motion } from 'framer-motion'
 
 const ActualitesHeroSection = () => {
   return (
-    <section className="relative min-h-[70vh] md:min-h-[80vh] bg-linear-to-br from-[#1a4d2e] via-[#2d6a4f] to-[#6b8e23] text-white py-20 lg:py-28 overflow-hidden">
+    <motion.section 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="relative min-h-[70vh] md:min-h-[80vh] bg-linear-to-br from-[#1a4d2e] via-[#2d6a4f] to-[#6b8e23] text-white py-20 lg:py-28 overflow-hidden"
+    >
       
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
@@ -13,42 +17,76 @@ const ActualitesHeroSection = () => {
       </div>
       
       {/* Decorative elements */}
-      <div className="absolute top-10 right-10 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-10 left-10 w-60 h-60 bg-emerald-400/10 rounded-full blur-3xl"></div>
+      <motion.div 
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1.5, type: "spring" }}
+        className="absolute top-10 right-10 w-40 h-40 bg-white/5 rounded-full blur-3xl"
+      ></motion.div>
+      <motion.div 
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1.5, type: "spring", delay: 0.3 }}
+        className="absolute bottom-10 left-10 w-60 h-60 bg-emerald-400/10 rounded-full blur-3xl"
+      ></motion.div>
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[50vh]">
           
           {/* Left Column - Text Content */}
           <div className="max-w-2xl">
-    
             {/* Title */}
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-6">
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-6"
+            >
               Actualités, 
-              <span className="block text-emerald-300 mt-2">
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                className="block text-emerald-300 mt-2"
+              >
                 Conférences & Formations
-              </span>
-            </h1>
+              </motion.span>
+            </motion.h1>
 
             {/* Description */}
-            <p className="text-xl text-emerald-50/90 mb-8 leading-relaxed">
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+              className="text-xl text-emerald-50/90 mb-8 leading-relaxed"
+            >
               Retrouvez mes dernières interventions, événements à venir et opportunités 
               de formation dans le domaine de la durabilité environnementale et sociale.
-            </p>
-
+            </motion.p>
           </div>
 
           {/* Right Column - Image */}
-          <div className="space-y-6">
-
-                <img src="/images/personne/2.jpg" alt="" className="object-cover h-full w-full rounded-2xl shadow" />
-
-          </div>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.9, duration: 1 }}
+            className="space-y-6"
+          >
+            <motion.img 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.1, duration: 0.8 }}
+              whileHover={{ scale: 1.03 }}
+              src="/images/personne/2.jpg" 
+              alt="Actualités et conférences" 
+              className="object-cover h-full w-full rounded-2xl shadow"
+            />
+          </motion.div>
 
         </div>
       </div>
 
-    </section>
+    </motion.section>
   )
 }
 
