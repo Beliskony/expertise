@@ -6,6 +6,8 @@ import Services from './pages/Services'
 import { Footer } from './component/Footer'
 import Contact from './pages/Contact'
 import Actualites from './pages/Actualites'
+import ScrollToTop from './hooks/ScrollToTop'
+import NotFound from './pages/NotFound'
 
 
 function App() {
@@ -13,11 +15,14 @@ function App() {
   return (
     <BrowserRouter>
      <Header />
+     <ScrollToTop />
        <Routes>
          <Route path='/' element={<Home />} />
          <Route path='/services' element={<Services />} />
          <Route path='/contact' element={<Contact />} />
          <Route path='/actualites' element={<Actualites />} />
+
+         <Route path='*' element={<NotFound />} />
        </Routes>
       <Footer />
     </BrowserRouter>

@@ -60,11 +60,14 @@ const Header: React.FC = () => {
       <nav className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="shrink-0">
-            <Link to="/" className="text-2xl font-bold text-[#1a4d2e] hover:text-[#6b8e23] transition-colors">
-              H
+            <Link to="/">
+              <img 
+                src="/logo.png" 
+                alt="Logo Hermane" 
+                className="h-16 w-auto"
+              />
             </Link>
-          </div>
+
 
           {/* Navigation desktop */}
           <div className="hidden md:flex items-center space-x-1 lg:space-x-2">

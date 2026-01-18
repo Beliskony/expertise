@@ -12,12 +12,16 @@ export function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
-                <Leaf className="w-7 h-7 text-[#1a4d2e]" />
+              <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center shadow-lg">
+                <img 
+                src="/logo.png" 
+                alt="Logo Hermane" 
+                className="h-16 w-auto"
+              />
               </div>
               <div>
-                <h2 className="font-bold text-xl text-white">H</h2>
-                <p className="text-[#d4c5a9] text-sm">Consulting & Audit</p>
+                <h2 className="font-bold text-xl text-white">Brou Assoua Hermann</h2>
+                <p className="text-[#d4c5a9] text-sm">Expert Consultant Environnement</p>
               </div>
             </div>
 
