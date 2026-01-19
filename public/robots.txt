@@ -3,5 +3,14 @@ Allow: /
 Disallow: /admin/
 Disallow: /*/admin/
 
+
+# Autoriser les bots de Google Ads
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: AdsBot-Google-Mobile
+Allow: /
+
+
 # Sitemap
 Sitemap: https://VOTRE-SITE.com/sitemap.xml
