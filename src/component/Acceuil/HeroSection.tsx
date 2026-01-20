@@ -135,9 +135,8 @@ const HeroSection = () => {
                 transition={{ delay: 1.2, duration: 0.6 }}
                 className="text-lg text-emerald-50 leading-relaxed"
               >
-                Avec 18 années d'expertise dans l'évaluation environnementale et sociale, 
-                j'accompagne les organisations vers l'excellence en matière de durabilité. 
-                Mon approche personnalisée combine rigueur technique et accompagnement sur mesure.
+                Fort de mes 18 ans d'expérience, je réalise vos évaluations environnementales et sociales (EIES, audits, stratégies) et vous accompagne dans la mise en œuvre de normes de durabilité (ISO, RSPO, bio, commerce éthique).
+                Mon approche allie rigueur technique et conseil personnalisé pour soutenir vos projets de développement responsable.
               </motion.p>
               
               <motion.p 

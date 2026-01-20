@@ -14,7 +14,6 @@ const DomainesExpert = () => {
         "Consultation des parties prenantes"
       ],
       color: "#1a4d2e",
-      count: "50+ projets"
     },
     {
       icon: Leaf,
@@ -27,7 +26,6 @@ const DomainesExpert = () => {
         "Plans d'action correctifs"
       ],
       color: "#6b8e23",
-      count: "100+ audits"
     },
     {
       icon: Award,
@@ -40,7 +38,6 @@ const DomainesExpert = () => {
         "HACCP et sécurité alimentaire"
       ],
       color: "#ff6347",
-      count: "30+ certifications"
     },
     {
       icon: FileText,
@@ -53,7 +50,6 @@ const DomainesExpert = () => {
         "Formation et renforcement capacités"
       ],
       color: "#1a4d2e",
-      count: "25+ programmes"
     },
     {
       icon: BarChart,
@@ -66,7 +62,6 @@ const DomainesExpert = () => {
         "Droits humains et travail"
       ],
       color: "#6b8e23",
-      count: "40+ évaluations"
     },
     {
       icon: UsersIcon,
@@ -79,7 +74,6 @@ const DomainesExpert = () => {
         "Support post-formation"
       ],
       color: "#ff6347",
-      count: "500+ personnes formées"
     }
   ]
 
@@ -149,14 +143,6 @@ const DomainesExpert = () => {
                     </motion.div>
                     <div>
                       <h3 className="font-bold text-lg text-gray-900">{domain.title}</h3>
-                      <motion.span 
-                        initial={{ scale: 0, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ type: "spring", stiffness: 200, delay: 0.5 }}
-                        className="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-1 rounded-full"
-                      >
-                        {domain.count}
-                      </motion.span>
                     </div>
                   </div>
                 </div>
