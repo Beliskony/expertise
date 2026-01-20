@@ -28,7 +28,7 @@ const SectionFormulaireMap = () => {
         className="relative pt-32 pb-20 min-h-[50vh] flex items-center justify-center bg-linear-to-br from-[#1a4d2e]/90 via-[#1a4d2e]/80 to-[#6b8e23]/85 text-white"
       >
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-10"></div>
+          <div className="absolute inset-0 opacity-10"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">

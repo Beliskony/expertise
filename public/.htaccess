@@ -1,10 +1,34 @@
+# ROUTING POUR REACT (SPA)
+# Redirige toutes les requêtes vers index.html sauf les fichiers existants
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
-
+  
+  # Si le fichier ou dossier existe, servir directement
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
-
+  
+  # Sinon, rediriger vers index.html
   RewriteRule ^ index.html [L]
+</IfModule>
+
+# EN-TÊTES CACHE
+<IfModule mod_headers.c>
+  # Cache long pour les assets (comme /assets/)
+  <FilesMatch "\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  
+  # Pas de cache pour la page d'accueil
+  <FilesMatch "^index\.html$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires 0
+  </FilesMatch>
+</IfModule>
+
+# COMPRESSION GZIP (optionnel mais recommandé)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript
 </IfModule>
