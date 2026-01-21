@@ -31,7 +31,7 @@ export function Footer() {
               développement durable et responsable.
             </p>
 
-            <div className="flex gap-3 pt-2">
+          {/*  <div className="flex gap-3 pt-2">
               <a
                 href="#"
                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#ff6347] transition-colors group"
@@ -53,7 +53,7 @@ export function Footer() {
               >
                 <Globe className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
               </a>
-            </div>
+            </div> */}
           </div>
 
           {/* Navigation */}
@@ -154,7 +154,7 @@ export function Footer() {
                 </div>
               </li>
 
-              <li className="flex items-start gap-3">
+            {/*  <li className="flex items-start gap-3">
                 <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
                   <MapPin className="w-4 h-4 text-[#ff6347]" />
                 </div>
@@ -162,7 +162,7 @@ export function Footer() {
                   <p className="text-[#d4c5a9] text-xs mb-1">Adresse</p>
                   <span className="text-white font-medium">Votre adresse</span>
                 </div>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
@@ -198,9 +198,6 @@ export function Footer() {
         {/* Badge certifications */}
         <div className="mt-8 pt-6 border-t border-[#d4c5a9]/30">
           <div className="flex flex-wrap justify-center gap-4">
-            <div className="px-3 py-1 bg-white/10 rounded-full text-xs text-[#d4c5a9]">
-              RSPO Certifié
-            </div>
             <div className="px-3 py-1 bg-white/10 rounded-full text-xs text-[#d4c5a9]">
               ISO 9001:2015
             </div>

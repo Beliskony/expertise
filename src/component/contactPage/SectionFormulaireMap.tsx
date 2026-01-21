@@ -103,7 +103,7 @@ const SectionFormulaireMap = () => {
             >
               {[
                 { value: "24h", label: "Réponse garantie" },
-                { value: "Gratuit", label: "Premier diagnostic" },
+                //{ value: "Garantie", label: "Expertise complète" },
                 { value: "100%", label: "Accompagnement direct" }
               ].map((stat, index) => (
                 <motion.div
@@ -165,7 +165,7 @@ const SectionFormulaireMap = () => {
                     icon: MapPin, 
                     title: "Bureau Principal", 
                     value: "Abidjan, Côte d'Ivoire",
-                    link: "https://maps.google.com",
+                    link: "#",
                     color: "bg-[#ff6347]/10"
                   },
                   { 
@@ -229,7 +229,7 @@ const SectionFormulaireMap = () => {
                 
                 <ul className="space-y-3">
                   {[
-                    { text: "Consultation initiale gratuite de 30 min", icon: "✓" },
+                    { text: "Consultation initiale de 30 min", icon: "✓" },
                     { text: "Expertise directe sans intermédiaire", icon: "✓" },
                     { text: "Réponse personnalisée sous 24h", icon: "✓" },
                     { text: "Devis transparent et détaillé", icon: "✓" },

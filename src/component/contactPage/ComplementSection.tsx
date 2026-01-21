@@ -201,11 +201,6 @@ const ComplementSection = () => {
 
                   <p className="text-gray-600 leading-relaxed">{text}</p>
 
-                  <div className="mt-6 pt-4 border-t border-[#d4c5a9] group-hover:border-[#1a4d2e] transition-colors">
-                    <span className="text-xs text-gray-500 font-medium">
-                      Engagement personnel
-                    </span>
-                  </div>
                 </motion.div>
               ))}
             </div>

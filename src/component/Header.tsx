@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Mail, Menu, Phone, X } from "lucide-react";
 
 
 const Header: React.FC = () => {
@@ -160,18 +160,20 @@ const Header: React.FC = () => {
               <p className="text-sm text-gray-600">
                 Spécialiste en évaluation environnementale et sociale
               </p>
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 justify-between mx-8">
                 <a 
-                  href="tel:+1234567890" 
-                  className="text-sm text-[#1a4d2e] hover:text-[#6b8e23] font-medium"
+                  href="tel:+2250709213751" 
+                  className="text-sm text-[#1a4d2e] hover:text-[#6b8e23] font-medium flex flex-row gap-x-1"
                 >
-                  📞 Appeler
+                  <Phone />
+                  Appeler
                 </a>
                 <a 
                   href="mailto:contact@hermane.com" 
-                  className="text-sm text-[#1a4d2e] hover:text-[#6b8e23] font-medium"
+                  className="text-sm text-[#1a4d2e] hover:text-[#6b8e23] font-medium flex flex-row gap-x-1"
                 >
-                  ✉️ Email
+                  <Mail />
+                  Email
                 </a>
               </div>
             </div>
