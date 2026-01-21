@@ -1,6 +1,7 @@
 import { useState } from "react"
-import { Mail, Phone, MapPin, Clock, Send, User, Building, MessageSquare, Calendar, FileText, CheckCircle } from "lucide-react"
+import { Mail, Phone, MapPin, Clock, Send, User, Building, MessageSquare, Calendar, FileText, CheckCircle, Loader } from "lucide-react"
 import { motion } from "framer-motion"
+import { emailService } from "../../hooks/MailTo"
 
 const SectionFormulaireMap = () => {
   const [formData, setFormData] = useState({
@@ -13,10 +14,44 @@ const SectionFormulaireMap = () => {
     urgency: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setLoading(true)
+
+    try {
+      const response = await emailService.sendContact(formData);
+      console.log("Form submitted:", formData)
+      // Ici vous ajouteriez la logique d'envoi du formulaire
+      if (response.success) {
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          service: "",
+          message: "",
+          urgency: "",
+        })
+      } else {
+        alert(`Erreur lors de l'envoi : ${response.message}`);
+      }
+
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false)
+    }
+
     console.log("Form submitted:", formData)
-    // Ici vous ajouteriez la logique d'envoi du formulaire
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    })
   }
 
   return (
@@ -293,10 +328,11 @@ const SectionFormulaireMap = () => {
                       </label>
                       <motion.input
                         whileFocus={{ scale: 1.02 }}
+                        name={field.field}
                         type={field.type || "text"}
                         className="w-full px-4 py-3 border-2 border-[#d4c5a9] rounded-lg focus:outline-none focus:border-[#1a4d2e] focus:ring-2 focus:ring-[#1a4d2e]/20 transition-all placeholder-gray-400"
                         value={formData[field.field as keyof typeof formData]}
-                        onChange={(e) => setFormData({ ...formData, [field.field]: e.target.value })}
+                        onChange={handleChange}
                         required={field.label.includes('*')}
                         placeholder={field.placeholder}
                       />
@@ -322,9 +358,10 @@ const SectionFormulaireMap = () => {
                       </label>
                       <motion.input
                         whileFocus={{ scale: 1.02 }}
+                        name={field.field}
                         className="w-full px-4 py-3 border-2 border-[#d4c5a9] rounded-lg focus:outline-none focus:border-[#1a4d2e] focus:ring-2 focus:ring-[#1a4d2e]/20 transition-all placeholder-gray-400"
                         value={formData[field.field as keyof typeof formData]}
-                        onChange={(e) => setFormData({ ...formData, [field.field]: e.target.value })}
+                        onChange={handleChange}
                         placeholder={field.placeholder}
                       />
                     </motion.div>
@@ -349,9 +386,10 @@ const SectionFormulaireMap = () => {
                       </label>
                       <motion.select
                         whileFocus={{ scale: 1.02 }}
+                        name={field.field}
                         className="w-full px-4 py-3 border-2 border-[#d4c5a9] rounded-lg focus:outline-none focus:border-[#1a4d2e] focus:ring-2 focus:ring-[#1a4d2e]/20 transition-all bg-white"
                         value={formData[field.field as keyof typeof formData]}
-                        onChange={(e) => setFormData({ ...formData, [field.field]: e.target.value })}
+                        onChange={handleChange}
                         required={field.label.includes('*')}
                       >
                         {field.field === "service" ? (
@@ -392,9 +430,10 @@ const SectionFormulaireMap = () => {
                   </label>
                   <motion.textarea
                     whileFocus={{ scale: 1.01 }}
+                    name="message"
                     className="w-full px-4 py-3 border-2 border-[#d4c5a9] rounded-lg min-h-40 focus:outline-none focus:border-[#1a4d2e] focus:ring-2 focus:ring-[#1a4d2e]/20 transition-all placeholder-gray-400"
                     value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    onChange={handleChange}
                     required
                     placeholder="Décrivez votre projet, vos objectifs, vos contraintes et vos questions spécifiques..."
                   />
@@ -410,20 +449,29 @@ const SectionFormulaireMap = () => {
                     type="submit"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="group inline-flex items-center gap-3 px-8 py-4 rounded-lg bg-[#1a4d2e] text-white font-semibold hover:bg-[#163e24] shadow-lg hover:shadow-xl min-w-50 justify-center"
-                  >
-                    <motion.span
-                      whileHover={{ x: 5 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    >
+                    disabled={loading} // AJOUTER
+                    className={`group inline-flex items-center gap-3 px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-xl min-w-50 justify-center transition-all ${
+                      loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#1a4d2e] hover:bg-[#163e24] text-white'
+                  }`}
+        >
+                    {loading ? (
+                    <>
+                     <span className="animate-spin"><Loader className="w-4 h-4" /> </span>
+                      Envoi en cours...
+                    </> 
+                  ) : (
+                    <>
+                     <motion.span whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 400 }}>
                       <Send className="w-4 h-4" />
-                    </motion.span>
-                    Envoyer ma demande
-                  </motion.button>
-                  <p className="text-sm text-gray-500 text-center">
-                    <span className="font-medium text-[#1a4d2e]">Garantie :</span> Réponse personnelle dans les 24h ouvrables
-                  </p>
-                </motion.div>
+                     </motion.span>
+                      Envoyer ma demande
+                    </>
+                  )}
+                     </motion.button>
+                      <p className="text-sm text-gray-500 text-center">
+                        <span className="font-medium text-[#1a4d2e]">Garantie :</span> Réponse personnelle dans les 24h ouvrables
+                      </p>
+            </motion.div>
               </form>
             </motion.div>
           </div>
